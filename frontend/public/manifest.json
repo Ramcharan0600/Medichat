@@ -1,0 +1,9 @@
+{
+  "short_name": "LPU Cure",
+  "name": "LPU Cure - Campus Pharmacy",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#2c4380",
+  "background_color": "#ffffff"
+}
