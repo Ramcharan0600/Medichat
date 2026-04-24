@@ -16,7 +16,19 @@ router.post("/register", async (req, res) => {
     const user = await User.create({ name, email, password: hash, role, ...extra });
     console.log(`✅ User registered successfully: ${user._id}`);
     const token = jwt.sign({ id: user._id, role: user.role, name: user.name }, process.env.JWT_SECRET, { expiresIn: "7d" });
-    res.json({ token, user: { id: user._id, name, email, role } });
+    res.json({ 
+      token, 
+      user: { 
+        id: user._id, 
+        name: user.name, 
+        email: user.email, 
+        role: user.role,
+        hostel: user.hostel,
+        regNo: user.regNo,
+        shopName: user.shopName,
+        specialization: user.specialization
+      } 
+    });
   } catch (e) { 
     console.error(`🔥 Registration Error: ${e.message}`);
     res.status(500).json({ msg: e.message }); 
@@ -41,7 +53,19 @@ router.post("/login", async (req, res) => {
     }
     console.log(`✅ Login successful: ${email}`);
     const token = jwt.sign({ id: user._id, role: user.role, name: user.name }, process.env.JWT_SECRET, { expiresIn: "7d" });
-    res.json({ token, user: { id: user._id, name: user.name, email, role: user.role } });
+    res.json({ 
+      token, 
+      user: { 
+        id: user._id, 
+        name: user.name, 
+        email: user.email, 
+        role: user.role,
+        hostel: user.hostel,
+        regNo: user.regNo,
+        shopName: user.shopName,
+        specialization: user.specialization
+      } 
+    });
   } catch (e) { 
     console.error(`🔥 Login Error: ${e.message}`);
     res.status(500).json({ msg: e.message }); 
