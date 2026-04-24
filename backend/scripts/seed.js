@@ -19,13 +19,13 @@ const CampusGraph = require("../models/CampusGraph");
   ]);
 
   const meds = await Medicine.create([
-    { name: "Calpol 650mg", price: 180, weight: 1, benefit: 9, category: "Fever", stock: 100, soldCount: 0, expiryDate: new Date("2026-12-01") },
-    { name: "Solvin Cold", price: 210, weight: 1, benefit: 8, category: "Cold & Flu", stock: 80, soldCount: 0, expiryDate: new Date("2026-11-15") },
-    { name: "Saridon Advance", price: 150, weight: 1, benefit: 7, category: "Headache/Pain", stock: 150, soldCount: 0, expiryDate: new Date("2027-01-01") },
-    { name: "Ascoril LS Syrup", price: 320, weight: 2, benefit: 8, category: "Cough", stock: 50, soldCount: 0, expiryDate: new Date("2026-10-30") },
-    { name: "Digene Tablet", price: 120, weight: 1, benefit: 6, category: "Acidity/Gas", stock: 200, soldCount: 0, expiryDate: new Date("2027-05-10") },
-    { name: "Allegra 120mg", price: 450, weight: 1, benefit: 7, category: "Allergy", stock: 60, soldCount: 0, expiryDate: new Date("2026-08-20") },
-    { name: "Volini Spray", price: 280, weight: 2, benefit: 9, category: "Muscle Pain", stock: 40, soldCount: 0, expiryDate: new Date("2026-12-30") },
+    { name: "Calpol 650mg", price: 10, weight: 1, benefit: 9, category: "Fever", stock: 100, soldCount: 0, expiryDate: new Date("2026-12-01") },
+    { name: "Solvin Cold", price: 15, weight: 1, benefit: 8, category: "Cold & Flu", stock: 80, soldCount: 0, expiryDate: new Date("2026-11-15") },
+    { name: "Saridon Advance", price: 12, weight: 1, benefit: 7, category: "Headache/Pain", stock: 150, soldCount: 0, expiryDate: new Date("2027-01-01") },
+    { name: "Ascoril LS Syrup", price: 18, weight: 2, benefit: 8, category: "Cough", stock: 50, soldCount: 0, expiryDate: new Date("2026-10-30") },
+    { name: "Digene Tablet", price: 5, weight: 1, benefit: 6, category: "Acidity/Gas", stock: 200, soldCount: 0, expiryDate: new Date("2027-05-10") },
+    { name: "Allegra 120mg", price: 19, weight: 1, benefit: 7, category: "Allergy", stock: 60, soldCount: 0, expiryDate: new Date("2026-08-20") },
+    { name: "Volini Spray", price: 16, weight: 2, benefit: 9, category: "Muscle Pain", stock: 40, soldCount: 0, expiryDate: new Date("2026-12-30") },
   ]);
 
   // Create a conflict: Allegra + Saridon

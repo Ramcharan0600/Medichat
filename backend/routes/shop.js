@@ -47,6 +47,15 @@ router.get("/inventory", auth(["shop"]), async (req, res) => {
   } catch (e) { res.status(500).json({ msg: e.message }); }
 });
 
+// Shop: update medicine (price, stock, etc.)
+router.patch("/medicine/:id", auth(["shop"]), async (req, res) => {
+  try {
+    const { price, stock } = req.body;
+    const med = await Medicine.findByIdAndUpdate(req.params.id, { price, stock }, { new: true });
+    res.json(med);
+  } catch (e) { res.status(500).json({ msg: e.message }); }
+});
+
 // Shop: analytics & stats
 router.get("/stats", auth(["shop"]), async (req, res) => {
   try {

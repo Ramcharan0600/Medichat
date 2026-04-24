@@ -6,6 +6,10 @@ export default function ShopDash() {
   const [inventory, setInventory] = useState([]);
   const [stats, setStats] = useState(null);
   const [tab, setTab] = useState("orders");
+  
+  // Edit states
+  const [editingId, setEditingId] = useState(null);
+  const [editForm, setEditForm] = useState({ price: 0, stock: 0 });
 
   const refreshOrders = () => api.get("/orders/shop").then(r=>setOrders(r.data));
   const refreshInventory = () => api.get("/shop/inventory").then(r=>setInventory(r.data));
@@ -30,6 +34,22 @@ export default function ShopDash() {
     const now = new Date();
     const diff = (d - now) / (1000 * 60 * 60 * 24);
     return diff < 30;
+  };
+
+  const startEdit = (m) => {
+    setEditingId(m._id);
+    setEditForm({ price: m.price, stock: m.stock });
+  };
+
+  const saveEdit = async () => {
+    try {
+      await api.patch(`/shop/medicine/${editingId}`, editForm);
+      setEditingId(null);
+      refreshInventory();
+      refreshStats();
+    } catch (e) {
+      alert("Error updating medicine");
+    }
   };
 
   return (
@@ -92,20 +112,44 @@ export default function ShopDash() {
         <div className="card">
           <h3>Medicine Inventory & Stock Management</h3>
           <table>
-            <thead><tr><th>Medicine Name</th><th>Category</th><th>Stock</th><th>Sold</th><th>Expiry Date</th><th>Status</th></tr></thead>
+            <thead><tr><th>Medicine Name</th><th>Category</th><th>Price (₹)</th><th>Stock</th><th>Sold</th><th>Expiry Date</th><th>Actions</th></tr></thead>
             <tbody>
               {inventory.map(m=>(
                 <tr key={m._id} style={{background: isExpiringSoon(m.expiryDate) ? "#fff5f5" : "inherit"}}>
                   <td><b>{m.name}</b></td>
                   <td>{m.category}</td>
-                  <td style={{color: m.stock < 20 ? "red" : "inherit"}}>{m.stock}</td>
+                  <td>
+                    {editingId === m._id ? (
+                      <input 
+                        type="number" 
+                        value={editForm.price} 
+                        style={{width: 60, padding: 4}}
+                        onChange={e => setEditForm({...editForm, price: Number(e.target.value)})} 
+                      />
+                    ) : (
+                      `₹${m.price}`
+                    )}
+                  </td>
+                  <td style={{color: m.stock < 20 ? "red" : "inherit"}}>
+                    {editingId === m._id ? (
+                      <input 
+                        type="number" 
+                        value={editForm.stock} 
+                        style={{width: 60, padding: 4}}
+                        onChange={e => setEditForm({...editForm, stock: Number(e.target.value)})} 
+                      />
+                    ) : (
+                      m.stock
+                    )}
+                  </td>
                   <td>{m.soldCount}</td>
                   <td>{new Date(m.expiryDate).toLocaleDateString()}</td>
                   <td>
-                    {isExpiringSoon(m.expiryDate) ? 
-                      <span className="badge" style={{background:"#ff4444", color:"#fff"}}>EXPIRING SOON</span> : 
-                      <span className="badge" style={{background:"#065f46", color:"#fff"}}>STABLE</span>
-                    }
+                    {editingId === m._id ? (
+                      <button className="btn" style={{padding: "4px 8px", fontSize: 11}} onClick={saveEdit}>Save</button>
+                    ) : (
+                      <button className="btn btn-navy" style={{padding: "4px 8px", fontSize: 11}} onClick={() => startEdit(m)}>Edit</button>
+                    )}
                   </td>
                 </tr>
               ))}
@@ -135,4 +179,3 @@ export default function ShopDash() {
     </div>
   );
 }
-
