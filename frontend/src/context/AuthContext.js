@@ -5,17 +5,17 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const u = sessionStorage.getItem("user");
+    const u = localStorage.getItem("user");
     if (u) setUser(JSON.parse(u));
     setLoading(false);
   }, []);
 
   const login = (token, user) => {
-    sessionStorage.setItem("token", token);
-    sessionStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user));
     setUser(user);
   };
-  const logout = () => { sessionStorage.clear(); setUser(null); };
+  const logout = () => { localStorage.clear(); setUser(null); };
   return <AuthCtx.Provider value={{ user, loading, login, logout }}>{children}</AuthCtx.Provider>;
 }
 export const useAuth = () => useContext(AuthCtx);

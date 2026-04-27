@@ -1,6 +1,6 @@
-# 🏥 CalmCure LPU — AI-Powered Campus Medical Service Platform
+# 🏥 LPUCure — AI-Powered Campus Medical Service Platform
 
-**CalmCure LPU** is a comprehensive MERN-stack medical service ecosystem designed specifically for the students and staff of Lovely Professional University (LPU). It integrates **Artificial Intelligence** and **6 Advanced Data Structures & Algorithms (DSA)** to solve real-world healthcare and logistical challenges on a massive campus.
+**LPUCure** is a comprehensive MERN-stack medical service ecosystem designed specifically for the students and staff of Lovely Professional University (LPU). It integrates **Artificial Intelligence** and **6 Advanced Data Structures & Algorithms (DSA)** to solve real-world healthcare and logistical challenges on a massive campus.
 
 ---
 
@@ -39,12 +39,27 @@ This project stands out by moving beyond simple CRUD, using 6 distinct algorithm
 
 ---
 
-## 🛠️ Tech Stack
-*   **Frontend:** React.js, Context API, CSS3 (Premium Aesthetics).
-*   **Backend:** Node.js, Express.js.
-*   **Database:** MongoDB Atlas.
-*   **AI Integration:** Google Gemini Pro API.
-*   **Authentication:** JWT (Stored in SessionStorage for ephemeral campus sessions).
+## 🛠️ Technology Stack
+
+### Frontend (The Interface)
+- **React.js (v18)**: Powering a highly dynamic and responsive Single Page Application.
+- **Context API**: Managing global state for authentication and user sessions.
+- **Leaflet & React-Leaflet**: Visualizing the Dijkstra-optimized campus map and real-time tracking.
+- **Axios**: Handling asynchronous API communication with custom interceptors.
+- **Vanilla CSS3**: Tailored premium aesthetics with a university-themed (Navy & Orange) design system.
+
+### Backend (The Engine)
+- **Node.js & Express.js**: Providing a robust and scalable RESTful API architecture.
+- **Mongoose**: Modeling complex healthcare relationships (Students, Doctors, Shops, Orders).
+- **JWT (JSON Web Tokens)**: Secure, stateless authentication.
+- **Bcryptjs**: Advanced hashing for user password protection.
+
+### Database & AI
+- **MongoDB Atlas**: Cloud-hosted NoSQL database for global data persistence.
+- **Google Gemini Pro**: Integrated for advanced natural language symptom analysis and sympathetic responses.
+
+### Session Management
+- **Persistent Sessions**: Upgraded from `sessionStorage` to `localStorage` to ensure user data remains active even after closing the browser—aligned with real-world healthcare application standards.
 
 ---
 
@@ -87,5 +102,20 @@ The system uses a real-world mapped graph of LPU landmarks:
 
 ---
 
+---
+
+## 🎓 Key Learnings from this Project
+
+Building **CalmCure LPU** was a deep dive into complex system architecture and real-world problem-solving:
+
+- **DSA in Production**: Learned to move beyond theoretical algorithm problems by implementing **Dijkstra’s**, **Knapsack**, and **Graph traversals** to solve actual campus logistics and healthcare diagnostics.
+- **Full-Stack Orchestration**: Mastered the integration of a MERN-stack environment, handling everything from role-based access control (RBAC) to cloud database persistence.
+- **Empathy-Driven UX**: Discovered the importance of "tone" in AI interactions, refining the chatbot from a dry diagnostic tool into a sympathetic health assistant.
+- **Session Persistence**: Tackled real-world session management challenges, understanding the trade-offs between `sessionStorage` and `localStorage` for user retention.
+- **Geospatial Logic**: Gained experience in mapping real-world coordinates and visualizing algorithm results through interactive map layers.
+
+---
+
 ## 📄 License
 This project was developed for the LPU Final Year Project/DSA Viva and is open-source.
+
